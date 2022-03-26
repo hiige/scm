@@ -18,5 +18,11 @@
 (define start
   (lambda ()
     (let ((cmd (cdr (command-line))))
-      (if (null? cmd) (repl)
-        (apply exec cmd)))))
+      (cond
+        ((null? cmd) (repl))
+        ((equal? "-" (car cmd))
+         (apply exec
+          (cons "/dev/stdin"
+           (cdr cmd))))
+        (else
+          (apply exec cmd))))))
