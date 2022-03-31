@@ -1,3 +1,5 @@
+(define (libdir s)
+  (add-module-directory s #t))
 (define exec 
   (lambda argv
     (begin
